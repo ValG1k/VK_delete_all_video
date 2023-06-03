@@ -1,0 +1,28 @@
+// Поиск всех элементов с классами "VideoCard__action" и "VideoCard__action--delete"
+var deleteButtons = document.querySelectorAll('.VideoCard__action.VideoCard__action--delete');
+
+// Получение количества найденных элементов
+var deleteButtonsCount = deleteButtons.length;
+
+// Вывод количества найденных элементов в консоль
+console.log('Количество кнопок удаления:', deleteButtonsCount);
+
+// Функция для удаления элементов с задержкой
+function deleteWithDelay(index) {
+  if (index >= deleteButtonsCount) {
+    // Все элементы удалены
+    console.log('Удаление завершено');
+    return;
+  }
+
+  var deleteButton = deleteButtons[index];
+  deleteButton.click();
+
+  // Задержка перед следующим удалением (здесь 500 миллисекунд, вы можете изменить значение по своему усмотрению)
+  setTimeout(function() {
+    deleteWithDelay(index + 1);
+  }, 500);
+}
+
+// Запуск выполнения удаления
+deleteWithDelay(0);
